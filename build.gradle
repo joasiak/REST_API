@@ -32,8 +32,8 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.projectlombok:lombok:1.16.18')
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
-	compile('mysql:mysql-connector-java')
-	//compile('org.postgresql:postgresql')
+	//compile('mysql:mysql-connector-java')
+	compile('org.postgresql:postgresql')
 
 	compile('org.springframework.boot:spring-boot-autoconfigure')
 	compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.2.12.Final'
