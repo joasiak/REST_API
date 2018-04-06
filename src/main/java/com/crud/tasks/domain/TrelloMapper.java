@@ -1,9 +1,7 @@
 package com.crud.tasks.domain;
 
 import org.springframework.stereotype.Component;
-
 import java.util.List;
-
 import static java.util.stream.Collectors.toList;
 
 @Component

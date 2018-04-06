@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.when;
@@ -30,6 +31,34 @@ public class TrelloFacadeTest {
     private TrelloValidator trelloValidator;
     @Mock
     private TrelloMapper trelloMapper;
+
+    @Test
+    public void shouldFetchEmptyList() {
+        //Given
+        List<TrelloListDto> trelloList = new ArrayList<>();
+        trelloList.add(new TrelloListDto("1", "test_list", false));
+
+        List<TrelloBoardDto> trelloBoards = new ArrayList<>();
+        trelloBoards.add(new TrelloBoardDto("1", "test", trelloList));
+
+        List<TrelloList> mappedTrelloLists = new ArrayList<>();
+        mappedTrelloLists.add(new TrelloList("1", "test_list", false));
+
+        List<TrelloBoard> mappedTrelloBoards = new ArrayList<>();
+        mappedTrelloBoards.add(new TrelloBoard("1", "test", mappedTrelloLists));
+
+        when(trelloService.fetchTrelloBoards()).thenReturn(trelloBoards);
+        when(trelloMapper.mapToBoards(trelloBoards)).thenReturn(mappedTrelloBoards);
+        when(trelloMapper.mapToBoardsDto(anyList())).thenReturn(new ArrayList<>());
+        when(trelloValidator.validateTrelloBoards(mappedTrelloBoards)).thenReturn(new ArrayList<>());
+
+        //when
+        List<TrelloBoardDto> trelloBoardDtos =trelloFacade.fetchTrelloBoards();
+
+        //then
+        assertNotNull(trelloBoardDtos);
+        assertEquals(0, trelloBoardDtos.size());
+    }
 
     @Test
     public void shouldFetchTrelloBoards() {
@@ -55,10 +84,21 @@ public class TrelloFacadeTest {
         List<TrelloBoardDto> trelloBoardDtos =trelloFacade.fetchTrelloBoards();
 
         //then
+        assertNotNull(trelloBoardDtos);
         assertEquals(1, trelloBoardDtos.size());
-        assertEquals("1", trelloBoardDtos.get(0).getId());
-        assertEquals("my_task", trelloBoardDtos.get(0).getName());
-    }
+
+        trelloBoardDtos.forEach(trelloBoardDto -> {
+            assertEquals("1", trelloBoardDto.getId());
+            assertEquals("my_task", trelloBoardDto.getName());
+
+            trelloBoardDto.getLists().forEach(trelloListDto -> {
+                assertEquals("1", trelloListDto.getId());
+                assertEquals("my_list", trelloListDto.getName());
+                assertEquals(false, trelloListDto.isClosed());
+
+            });
+        });
+  }
 
     @Test
     public void shouldCreateCard() {
