@@ -64,11 +64,9 @@ public class TrelloMapperTest {
         givenTrelloBoards.add(new TrelloBoard("1", "test", givenTrelloLists));
 
         //When
-
         List<TrelloBoardDto> mappedTrelloBoardDto = trelloMapper.mapToBoardsDto(givenTrelloBoards);
 
         //Then
-
         Assert.assertEquals(mappedTrelloBoardDto.size(), givenTrelloBoards.size());
 
     }
@@ -106,7 +104,6 @@ public class TrelloMapperTest {
         List<TrelloListDto> mappedTrelloListDto = trelloMapper.mapToListDto(givenTrelloLists);
 
         //Then
-
         Assert.assertEquals(mappedTrelloListDto.size(), expectedTrelloListDto.size());
         Assert.assertEquals(mappedTrelloListDto.get(0).getName(), expectedTrelloListDto.get(0).getName());
     }
@@ -119,6 +116,7 @@ public class TrelloMapperTest {
 
         TrelloCardDto mappedTrelloCardDto = trelloMapper.mapToCardDto(givenTrelloCard);
 
+        //Then
         Assert.assertEquals(expectedTrelloCardDto.getName(), mappedTrelloCardDto.getName());
         Assert.assertEquals(expectedTrelloCardDto.getListId(), mappedTrelloCardDto.getListId());
 
@@ -134,6 +132,7 @@ public class TrelloMapperTest {
 
         TrelloCard mappedTrelloCard = trelloMapper.mapToCard(givenTrelloCardDto);
 
+        //Then
         Assert.assertEquals(expectedTrelloCard.getName(), mappedTrelloCard.getName());
         Assert.assertEquals(expectedTrelloCard.getListId(), mappedTrelloCard.getListId());
 
