@@ -15,21 +15,14 @@ public class EmailSchedulerWithTemplate {
     @Autowired
     private SimpleEmailService simpleEmailService;
 
-    //@Autowired
-    //private TaskRepository taskRepository;
-
     @Autowired
     private AdminConfig adminConfig;
 
-    //@Scheduled(cron="0 0 10 * * *") //fixedDelay = 10000
-    @Scheduled(cron="*/10 * * * * *")
+    @Scheduled(cron="0 0 10 * * *") //fixedDelay = 10000
+    //@Scheduled(cron="*/10 * * * * *")
     public void sendInformationEmail() {
-        //long size = taskRepository.count();
-        //String taskLabel = "task";
-        //if (size > 1) taskLabel = "tasks";
         simpleEmailService.send(simpleEmailService.createMimeDailyMessage(new Mail(adminConfig.getAdminMail(),"",SUBJECT,
-                "This is your daily statistic")));
-                //"Currently in database you have: " + size + " " + taskLabel)));
+                "This is your daily reminder :)")));
 
     }
 
