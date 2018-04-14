@@ -9,23 +9,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @RestController
 @RequestMapping("/v1/trello")
 @CrossOrigin("*")
 public class TrelloController {
 
-  //  @Autowired
-  //  private TrelloService trelloService;
+    //  @Autowired
+    //  private TrelloService trelloService;
     @Autowired
     private TrelloFacade trelloFacade;
 
     @RequestMapping(method = RequestMethod.GET, value = "/boards")
     public List<TrelloBoardDto> getTrelloBoards() {
 
-      //  List<TrelloBoardDto> trelloBoards = trelloClient.getTrelloBoards();
-      //  trelloBoards.forEach(trelloBoardDto -> System.out.println(trelloBoardDto.getId() + " " + trelloBoardDto.getName()));
+        //  List<TrelloBoardDto> trelloBoards = trelloClient.getTrelloBoards();
+        //  trelloBoards.forEach(trelloBoardDto -> System.out.println(trelloBoardDto.getId() + " " + trelloBoardDto.getName()));
 
-       /// return trelloService.fetchTrelloBoards();
+        /// return trelloService.fetchTrelloBoards();
         return trelloFacade.fetchTrelloBoards();
 
         /*
@@ -40,12 +41,11 @@ public class TrelloController {
                     System.out.println(trelloList.getName() + " - " + trelloList.getId() + " - " + trelloList.isClosed()));
         });
         */
-
     }
 
-    @RequestMapping(method=RequestMethod.POST, value ="/cards")
+    @RequestMapping(method = RequestMethod.POST, value = "/cards")
     public CreatedTrelloCardDto createdTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
-       // return trelloService.createdTrelloCard(trelloCardDto);
+        // return trelloService.createdTrelloCard(trelloCardDto);
         return trelloFacade.createCard(trelloCardDto);
     }
 }

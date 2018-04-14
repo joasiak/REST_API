@@ -53,7 +53,7 @@ public class TrelloFacadeTest {
         when(trelloValidator.validateTrelloBoards(mappedTrelloBoards)).thenReturn(new ArrayList<>());
 
         //when
-        List<TrelloBoardDto> trelloBoardDtos =trelloFacade.fetchTrelloBoards();
+        List<TrelloBoardDto> trelloBoardDtos = trelloFacade.fetchTrelloBoards();
 
         //then
         assertNotNull(trelloBoardDtos);
@@ -81,7 +81,7 @@ public class TrelloFacadeTest {
         when(trelloValidator.validateTrelloBoards(mappedTrelloBoards)).thenReturn(mappedTrelloBoards);
 
         //when
-        List<TrelloBoardDto> trelloBoardDtos =trelloFacade.fetchTrelloBoards();
+        List<TrelloBoardDto> trelloBoardDtos = trelloFacade.fetchTrelloBoards();
 
         //then
         assertNotNull(trelloBoardDtos);
@@ -98,21 +98,21 @@ public class TrelloFacadeTest {
 
             });
         });
-  }
+    }
 
     @Test
     public void shouldCreateCard() {
 
         //Given
 
-        TrelloCardDto trelloCardDto = new TrelloCardDto("Test task", "new_card","top","1");
-        TrelloCard mappedTrelloCard = new TrelloCard("Test task", "new_card","top", "1");
+        TrelloCardDto trelloCardDto = new TrelloCardDto("Test task", "new_card", "top", "1");
+        TrelloCard mappedTrelloCard = new TrelloCard("Test task", "new_card", "top", "1");
 
         CreatedTrelloCardDto createdTrelloCardDto = new CreatedTrelloCardDto(
                 "1",
                 "Test task",
                 "http://test.com",
-                new Badges(0, new AttachmentsByType(new Trello(0,0)))
+                new Badges(0, new AttachmentsByType(new Trello(0, 0)))
         );
 
 
@@ -124,7 +124,7 @@ public class TrelloFacadeTest {
         CreatedTrelloCardDto newCard = trelloFacade.createCard(trelloCardDto);
 
         //Then
-        assertEquals("1",newCard.getId());
+        assertEquals("1", newCard.getId());
         assertEquals("Test task", newCard.getName());
         assertEquals("http://test.com", newCard.getShortUrl());
     }

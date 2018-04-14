@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 import static java.util.stream.Collectors.toList;
 
 @Service
@@ -11,7 +12,7 @@ public class TrelloMapper {
 
     public List<TrelloBoard> mapToBoards(final List<TrelloBoardDto> trelloBoardDto) {
         return trelloBoardDto.stream()
-                .map(trelloBoard-> new TrelloBoard(trelloBoard.getId(), trelloBoard.getName(), mapToList(trelloBoard.getLists())))
+                .map(trelloBoard -> new TrelloBoard(trelloBoard.getId(), trelloBoard.getName(), mapToList(trelloBoard.getLists())))
                 .collect(toList());
     }
 
@@ -23,7 +24,7 @@ public class TrelloMapper {
 
     public List<TrelloList> mapToList(final List<TrelloListDto> trelloListDto) {
         return trelloListDto.stream()
-                .map(trelloList-> new TrelloList(trelloList.getId(), trelloList.getName(), trelloList.isClosed()))
+                .map(trelloList -> new TrelloList(trelloList.getId(), trelloList.getName(), trelloList.isClosed()))
                 .collect(toList());
     }
 
@@ -34,7 +35,7 @@ public class TrelloMapper {
     }
 
     public TrelloCardDto mapToCardDto(final TrelloCard trelloCard) {
-        return new TrelloCardDto(trelloCard.getName(), trelloCard.getDescription(),trelloCard.getPos(),trelloCard.getListId());
+        return new TrelloCardDto(trelloCard.getName(), trelloCard.getDescription(), trelloCard.getPos(), trelloCard.getListId());
     }
 
     public TrelloCard mapToCard(final TrelloCardDto trelloCardDto) {

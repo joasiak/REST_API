@@ -60,10 +60,10 @@ public class TaskControllerTest {
 
         //When & Then
         mockMvc.perform(get("/v1/tasks").contentType(MediaType.APPLICATION_JSON))
-            .andExpect(status().isOk())
-            .andExpect(jsonPath("$", hasSize(1)))
-            .andExpect(jsonPath("$[0].id",is(1)))
-            .andExpect(jsonPath("$[0].title", is("Test1")));
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].id", is(1)))
+                .andExpect(jsonPath("$[0].title", is("Test1")));
     }
 
     @Test
@@ -79,7 +79,7 @@ public class TaskControllerTest {
         //When & Then
         mockMvc.perform(get("/v1/tasks/1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id",is(1)))
+                .andExpect(jsonPath("$.id", is(1)))
                 .andExpect(jsonPath("$.title", is("Test1")));
     }
 
@@ -117,10 +117,9 @@ public class TaskControllerTest {
                 .characterEncoding("UTF-8")
                 .content(jsonContent));
 
-                action.andExpect(status().isOk())
-                .andExpect(jsonPath("$.id",is(1)))
+        action.andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", is(1)))
                 .andExpect(jsonPath("$.title", is("TestUpdate1")));
-
     }
 
     @Test
@@ -145,5 +144,4 @@ public class TaskControllerTest {
         action.andExpect(status().isOk());
 
     }
-
 }

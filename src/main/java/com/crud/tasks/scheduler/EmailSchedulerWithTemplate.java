@@ -18,12 +18,10 @@ public class EmailSchedulerWithTemplate {
     @Autowired
     private AdminConfig adminConfig;
 
-    @Scheduled(cron="0 0 10 * * *") //fixedDelay = 10000
+    @Scheduled(cron = "0 0 10 * * *") //fixedDelay = 10000
     //@Scheduled(cron="*/10 * * * * *")
     public void sendInformationEmail() {
-        simpleEmailService.send(simpleEmailService.createMimeDailyMessage(new Mail(adminConfig.getAdminMail(),"",SUBJECT,
+        simpleEmailService.send(simpleEmailService.createMimeDailyMessage(new Mail(adminConfig.getAdminMail(), "", SUBJECT,
                 "This is your daily reminder :)")));
-
     }
-
 }

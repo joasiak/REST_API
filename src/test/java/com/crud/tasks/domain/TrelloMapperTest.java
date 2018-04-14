@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 public class TrelloMapperTest {
 
     //@Autowired
-     private TrelloMapper trelloMapper;
+    private TrelloMapper trelloMapper;
 
     @Before
     public void setUp() throws Exception {
@@ -139,6 +139,4 @@ public class TrelloMapperTest {
         Assert.assertEquals(expectedTrelloCard.getPos(), mappedTrelloCard.getPos());
         Assert.assertEquals(expectedTrelloCard.getDescription(), mappedTrelloCard.getDescription());
     }
-
-
 }

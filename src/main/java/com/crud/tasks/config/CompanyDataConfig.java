@@ -11,8 +11,7 @@ public class CompanyDataConfig {
     @Value("${info.company.name}")
     private String companyDetails;
 
-    public String getCompanyDetails()
-    {
+    public String getCompanyDetails() {
         return companyDetails;
     }
 }

@@ -25,7 +25,7 @@ public class TrelloValidator {
     }
 
     public void validateCard(final TrelloCard trelloCard) {
-        if(trelloCard.getName().contains("test")) {
+        if (trelloCard.getName().contains("test")) {
             LOGGER.info("Someone is testing my application");
         } else {
             LOGGER.info("Seems that my application is used in proper way.");

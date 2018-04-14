@@ -22,11 +22,6 @@ public class TaskMapperTest {
     @Autowired
     TaskMapper taskMapper;
 
-  /*  @Before
-    public void setUp() throws Exception {
-        taskMapper = new TaskMapper();
-    }
-*/
     @Test
     public void mapToTask() throws Exception {
         //Given
@@ -36,10 +31,9 @@ public class TaskMapperTest {
         Task mappedTask = taskMapper.mapToTask(taskDto);
 
         //Then
-        Assert.assertEquals(mappedTask.getId(),task.getId());
-        Assert.assertEquals(mappedTask.getTitle(),task.getTitle());
-        Assert.assertEquals(mappedTask.getContent(),task.getContent());
-
+        Assert.assertEquals(mappedTask.getId(), task.getId());
+        Assert.assertEquals(mappedTask.getTitle(), task.getTitle());
+        Assert.assertEquals(mappedTask.getContent(), task.getContent());
     }
 
     @Test
@@ -51,9 +45,9 @@ public class TaskMapperTest {
         TaskDto mappedTaskDto = taskMapper.mapToTaskDto(task);
 
         //Then
-        Assert.assertEquals(mappedTaskDto.getId(),task.getId());
-        Assert.assertEquals(mappedTaskDto.getTitle(),task.getTitle());
-        Assert.assertEquals(mappedTaskDto.getContent(),task.getContent());
+        Assert.assertEquals(mappedTaskDto.getId(), task.getId());
+        Assert.assertEquals(mappedTaskDto.getTitle(), task.getTitle());
+        Assert.assertEquals(mappedTaskDto.getContent(), task.getContent());
     }
 
     @Test
@@ -61,16 +55,16 @@ public class TaskMapperTest {
         List<Task> taskList = new ArrayList<>();
         taskList.add(new Task(1l, "Test1", "Contenet1"));
 
-        List<TaskDto>  listTaskDto = new ArrayList<>();
+        List<TaskDto> listTaskDto = new ArrayList<>();
         listTaskDto.add(new TaskDto(1l, "Test1", "Contenet1"));
 
         //When
         List<TaskDto> mappedTaskList = taskMapper.mapToTaskDtoList(taskList);
 
         //Then
-        Assert.assertEquals(mappedTaskList.get(0).getId(),listTaskDto.get(0).getId());
-        Assert.assertEquals(mappedTaskList.get(0).getTitle(),listTaskDto.get(0).getTitle());
-        Assert.assertEquals(mappedTaskList.get(0).getContent(),listTaskDto.get(0).getContent());
+        Assert.assertEquals(mappedTaskList.get(0).getId(), listTaskDto.get(0).getId());
+        Assert.assertEquals(mappedTaskList.get(0).getTitle(), listTaskDto.get(0).getTitle());
+        Assert.assertEquals(mappedTaskList.get(0).getContent(), listTaskDto.get(0).getContent());
 
     }
 
